@@ -99,59 +99,5 @@ and open the template in the editor.
             <button type="button" onclick="getFinal()" onmouseout="outFunc()" > Submit & Copy </button>
             <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
         </div>
-        <script>
-            var finaltext = "";
-			var today = new Date();
-			var dd = today.getDate();
-			var mm = today.getMonth()+1; //January is 0!
-			var yyyy = today.getFullYear();
-
-			if(dd<10) {
-				dd = '0'+dd
-			} 
-
-			if(mm<10) {
-				mm = '0'+mm
-			} 
-
-			today = dd + '/' + mm + '/' + yyyy;
-			
-            function copyText() {
-                document.getElementById('copy').select();
-                document.execCommand('copy');
-                var tooltip = document.getElementById("myTooltip");
-                tooltip.innerHTML = "Copied ";
-            }
-			
-            function getFinal() {
-                var rstatus = document.querySelector('input[name="CRS"]:checked').value;
-                var rdetail = document.querySelector('input[name="CRD"]:checked').value;
-				var etype = document.querySelector('input[name="ET"]:checked').value;
-				var corrections = "(";
-				var items = document.getElementsByName('CORR');
-                for (var i = 0; i < items.length; i++) {
-                    if (items[i].type === 'checkbox' && items[i].checked === true) {
-                        if(corrections == "("){
-						corrections += items[i].value;
-						}
-						else{
-						corrections += ":" + items[i].value;
-						}
-                    }
-                }
-				if(corrections == "("){
-					alert("Please Select Atleast One Mistake");
-				}
-				corrections += ")";
-                //var corrections = document.querySelector('input[name="CORR"]:checked').value;
-                finaltext = rstatus + "," + rdetail + "," + corrections + "," + etype + "," + today + "," ;
-                document.getElementById('copy').value = finaltext;
-                copyText();
-            }
-            function outFunc() {
-                var tooltip = document.getElementById("myTooltip");
-                tooltip.innerHTML = "Copy to clipboard";
-            }
-        </script>
     </body>
 </html>
