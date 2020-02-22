@@ -1,4 +1,18 @@
-<html>
-<body align="center">
-  <img src="" height="700" ><br>
-</html>
+---
+layout: default
+---
+
+
+{% include career-profile.html %}
+
+{% unless site.data.data.sidebar.education %}
+  {% include education.html %}
+{% endunless %}
+
+{% include experiences.html %}
+
+{% include projects.html %}
+
+{% include publications.html %}
+
+{% include skills.html %}
